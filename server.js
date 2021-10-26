@@ -1,4 +1,4 @@
-require('dotenv').config()
+require("dotenv").config();
 
 const express = require("express");
 const app = express();
@@ -11,12 +11,13 @@ db.on("error", (error) => console.log(error));
 db.once("open", () => console.log("connected to db"));
 
 // JSON
-app.use(express.json())
+app.use(express.json());
 
 // Routes
-const subscribersRouter = require('./routes/subscribers')
+const subscribersRouter = require("./routes/subscribers");
+const usersRouter = require("./routes/users");
 
-app.use('/subscribers', subscribersRouter)
-
+app.use("/subscribers", subscribersRouter);
+app.use("/users", usersRouter);
 
 app.listen(3000, () => console.log("Server started"));
