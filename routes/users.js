@@ -28,11 +28,14 @@ router.post("/", async (req, res) => {
         phone: req.body.phone,
         address: req.body.address,
         website: req.body.website,
+        following: req.body.following,
+        followers: req.body.followers
     });
     try {
         const newUser = await user.save();
         res.status(201).json(newUser);
     } catch (error) {
+        console.log("olmadı ", error)
         res.status(400).json({ message: error.message });
     }
 });
@@ -59,6 +62,12 @@ router.patch("/:id", getUser, async (req, res) => {
     }
     if (req.body.website != null) {
         req.user.website = req.body.website;
+    }
+    if (req.body.following != null) {
+        req.user.following = req.body.following;
+    }
+    if (req.body.followers != null) {
+        req.user.followers = req.body.followers;
     }
     try {
         const updatedUser = await res.user.save();

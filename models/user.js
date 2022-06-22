@@ -26,6 +26,12 @@ const userSchema = new mongoose.Schema({
     website: {
         type: String,
     },
+    following: {
+        type: Object,
+    },
+    follower: {
+        type: Object
+    }
 });
 
 module.exports = mongoose.model("User", userSchema);
